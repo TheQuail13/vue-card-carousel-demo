@@ -20,11 +20,27 @@
       :footer-options="footerOpt"
     >
       <template v-slot:header="slotProps">
-        <strong>Id: {{ slotProps.headerProp.cMainId }}</strong>
+        <strong class="float-left text-white">{{
+          slotProps.headerProp.date
+        }}</strong>
+        <b-icon-check-all
+          style="height: 1.5em; width: 1.5em;"
+          class="float-right text-white check-btn"
+          @click="checkAll(slotProps.headerProp)"
+        ></b-icon-check-all>
       </template>
       <template v-slot:default="slotProps">
-        <div v-for="n in 5" :key="n">
-          {{ slotProps.bodyProp.cMainId }}. Hello from the Parent
+        <div>
+          <h4><u>To Do List</u></h4>
+          <b-form-checkbox
+            v-for="todo in slotProps.bodyProp.todos"
+            :key="todo.id"
+            class="mb-2"
+            v-model="todo.completed"
+            size="lg"
+          >
+            {{ todo.name }}
+          </b-form-checkbox>
         </div>
       </template>
       <template v-slot:footer="slotProps">
@@ -102,14 +118,72 @@ export default {
   components: { ColorSelector },
   data() {
     return {
-      listOfTodos: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
+      listOfTodos: [
+        {
+          date: "02/23/2020",
+          todos: [
+            { id: 0, name: "Make coffee", completed: false },
+            { id: 1, name: "Pet the cat", completed: false },
+            { id: 2, name: "Wash the car", completed: false },
+            { id: 3, name: "Laundry", completed: false }
+          ]
+        },
+        {
+          date: "02/24/2020",
+          todos: [
+            { id: 0, name: "Unplug PC", completed: false },
+            {
+              id: 1,
+              name: "Clean out cat hair from keyboard",
+              completed: false
+            },
+            { id: 2, name: "Reinstall OS", completed: false },
+            { id: 3, name: "Update PC drivers", completed: false },
+            { id: 4, name: "Pet the cat", completed: false }
+          ]
+        },
+        {
+          date: "02/25/2020",
+          todos: [
+            { id: 0, name: "Buy groceries", completed: false },
+            { id: 1, name: "Clean litter box", completed: false },
+            { id: 2, name: "Workout", completed: false },
+            { id: 3, name: "Pet the cat", completed: false }
+          ]
+        },
+        {
+          date: "02/26/2020",
+          todos: [
+            { id: 0, name: "Return library books", completed: false },
+            { id: 1, name: "Re-watch X-Files s2", completed: false },
+            { id: 2, name: "Pet the cat", completed: false },
+            { id: 3, name: "Flip table", completed: false }
+          ]
+        },
+        {
+          date: "02/27/2020",
+          todos: [
+            { name: "Go running", completed: false },
+            { name: "Finish watching Tiger King", completed: false },
+            { name: "Commit & push latest changes", completed: false },
+            { name: "Pet the cat", completed: false }
+          ]
+        }
+      ],
       hideBackdrop: true,
       sideCardOpacity: 0.25,
-      headerOpt: { isVisible: true, backgroundColor: "green" },
+      headerOpt: { isVisible: true, backgroundColor: "#563d7c" },
       bodyOpt: { backgroundColor: "" },
-      footerOpt: { isVisible: true, backgroundColor: "green" },
+      footerOpt: { isVisible: false, backgroundColor: "green" }
     };
   },
+  methods: {
+    checkAll(item) {
+      item.todos.forEach(itm => {
+        itm.completed = !itm.completed;
+      });
+    }
+  }
 };
 </script>
 
@@ -141,6 +215,10 @@ export default {
   border: 0;
   width: 149;
   height: 149;
+}
+
+.check-btn {
+  cursor: pointer;
 }
 
 .vcc {

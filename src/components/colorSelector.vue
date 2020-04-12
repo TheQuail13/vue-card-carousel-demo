@@ -21,16 +21,16 @@ export default {
     defaultColor: {
       type: String,
       required: false,
-      default: "Green",
-    },
+      default: "#563d7c"
+    }
   },
   data() {
     return {
       colors: {
-        hex: "#17a2b8",
+        hex: "#17a2b8"
       },
       colorValue: "",
-      displayPicker: false,
+      displayPicker: false
     };
   },
   mounted() {
@@ -44,7 +44,7 @@ export default {
     updateColors(color) {
       if (color.slice(0, 1) == "#") {
         this.colors = {
-          hex: color,
+          hex: color
         };
       } else if (color.slice(0, 4) == "rgba") {
         var rgba = color.replace(/^rgba?\(|\s+|\)$/g, "").split(","),
@@ -60,7 +60,7 @@ export default {
               .slice(1);
         this.colors = {
           hex: hex,
-          a: rgba[3],
+          a: rgba[3]
         };
       }
     },
@@ -101,7 +101,7 @@ export default {
       if (el !== target && !el.contains(target)) {
         this.hidePicker();
       }
-    },
+    }
   },
   watch: {
     colorValue(val) {
@@ -109,8 +109,8 @@ export default {
         this.updateColors(val);
         this.$emit("input", val);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
