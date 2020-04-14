@@ -1,6 +1,13 @@
 <template>
   <div id="app">
-    <span class="page-header">Vue Card Carousel</span>
+    <span class="mb-2">
+      <div class="page-header">Vue Card Carousel</div>
+      <small
+        >Interactive demo using a simple to-do list to showcase prop and slot
+        usage</small
+      >
+    </span>
+
     <a href="https://github.com/TheQuail13/vue-card-carousel">
       <img
         src="https://github.blog/wp-content/uploads/2008/12/forkme_right_green_007200.png?resize=149%2C149"
@@ -205,7 +212,6 @@ export default {
   font-weight: 600;
   color: #2c3e50;
   position: relative;
-  margin-bottom: 1.5rem;
 }
 
 .fork-me {
@@ -226,10 +232,6 @@ export default {
   width: 60vw !important;
   box-shadow: 1px 1px 5px 1px;
   border-radius: 0.35em;
-}
-
-.float-right {
-  float: right !important;
 }
 
 .switch {
